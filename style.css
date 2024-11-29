@@ -1,0 +1,121 @@
+/*
+Theme Name: Froufrou
+Author: Élie Meignan
+Requires at least: 6.7
+Tested up to: 6.7
+Requires PHP: 8.2
+*/
+
+:root {
+    --break-medium: 768px;
+    --froufrou-blue: #3135e9;
+}
+
+/*
+ * Link styles
+ * https://github.com/WordPress/gutenberg/issues/42319
+ */
+a {
+    text-decoration-thickness: 1px !important;
+    text-underline-offset: .1em;
+}
+
+/*
+ * Progressive enhancement to reduce widows and orphans
+ * https://github.com/WordPress/gutenberg/issues/55190
+ */
+h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
+    text-wrap: pretty;
+}
+
+@font-face {
+    font-family: "DINdong";
+    /*noinspection CssUnknownTarget*/
+    src:
+            local("DINdong"),
+            url("/wp-content/themes/froufrous/fonts/DINdong.otf") format("opentype"),
+            url("/wp-content/themes/froufrous/fonts/DINdong.woff") format("woff2"),
+            url("/wp-content/themes/froufrous/fonts/DINdong.woff2") format("woff");
+}
+
+html, body {
+    font-family: DINdong, sans-serif;
+}
+
+.mainContainer {
+    display: block;
+    padding: 1rem;
+    max-width: 72rem;
+    margin: auto;
+    grid-template-columns: minmax(18rem, 30%) 1fr;
+    grid-column-gap: 2rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    color: var(--froufrou-blue);
+    text-transform: uppercase;
+}
+
+.header__logo {
+    width: auto;
+    height: 4rem;
+    margin-right: 1.5rem;
+}
+
+.header__logoWrapper {
+    flex: none;
+}
+
+.header__content {
+    flex: 1;
+}
+
+.header__title {
+    font-size: 2rem;
+    line-height: 1.25;
+    margin-bottom: .75rem;
+}
+
+.header__nav .menu {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.125rem;
+}
+
+@media (min-width: 768px) {
+    .mainContainer {
+        display: grid;
+    }
+
+    .header {
+        display: block;
+    }
+
+    .header__logo {
+        height: 6rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .header__title {
+        margin-bottom: 1.5rem;
+    }
+
+    .header__nav .menu {
+        display: block;
+    }
+
+    .header__nav .menu-item + .menu-item {
+        margin-top: .5rem;
+    }
+}
+
+.pageContent {
+}
+
+@media (min-width: 768px) {
+    .pageContent {
+        padding-top: 2rem;
+    }
+}
