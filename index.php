@@ -23,21 +23,27 @@
 
         <div class="header__content">
             <a href="<?= home_url() ?>">
-                <h1 class="header__title">
-					<?php bloginfo('name'); ?>
-                </h1>
+				<?php if (is_front_page()): ?>
+                    <h1 class="header__title"><?php bloginfo('name'); ?></h1>
+				<?php else: ?>
+                    <div class="header__title"><?php bloginfo('name'); ?></div>
+				<?php endif; ?>
             </a>
 
-            <nav class="header__nav">
-				<?php wp_nav_menu(["theme-location" => "main-menu"]) ?>
-            </nav>
+			<?php wp_nav_menu(["theme-location" => "main-menu"]) ?>
         </div>
     </header>
 
     <main class="pageContent">
 		<?php if (have_posts()) : ?>
 			<?php while (have_posts()) : the_post(); ?>
+
+				<?php if (false === is_front_page()): ?>
+                    <h1 class="page__title"><?= the_title() ?></h1>
+				<?php endif; ?>
+
 				<?php the_content(); ?>
+
 			<?php endwhile; ?>
 		<?php else: ?>
             <p>Please configure a page</p>

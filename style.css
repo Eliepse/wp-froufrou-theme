@@ -172,3 +172,28 @@ html, body {
         padding-top: 2rem;
     }
 }
+
+/*
+| --------------------------------
+| Page
+| --------------------------------
+*/
+
+.page__title {
+    --fs-prefered: 8vw;
+    --fs-min: 1rem;
+    --fs-max: 2.5rem;
+    font-size: 2rem; /* Fallback value */
+    font-size: clamp(var(--fs-min), var(--fs-prefered), var(--fs-max));
+    color: var(--froufrou-blue);
+}
+
+@media (min-width: 768px) {
+    .page__title {
+        --fs-min: 2rem;
+        --fs-prefered: 3.4vw;
+        --fs-max: 3rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.25;
+    }
+}
