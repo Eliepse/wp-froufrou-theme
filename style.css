@@ -31,11 +31,10 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 @font-face {
     font-family: "DINdong";
     /*noinspection CssUnknownTarget*/
-    src:
-            local("DINdong"),
-            url("/wp-content/themes/froufrous/fonts/DINdong.otf") format("opentype"),
-            url("/wp-content/themes/froufrous/fonts/DINdong.woff") format("woff2"),
-            url("/wp-content/themes/froufrous/fonts/DINdong.woff2") format("woff");
+    src: local("DINdong"),
+    url("/wp-content/themes/froufrous/fonts/DINdong.otf") format("opentype"),
+    url("/wp-content/themes/froufrous/fonts/DINdong.woff") format("woff2"),
+    url("/wp-content/themes/froufrous/fonts/DINdong.woff2") format("woff");
 }
 
 html, body {
@@ -56,32 +55,76 @@ html, body {
     align-items: center;
     color: var(--froufrou-blue);
     text-transform: uppercase;
+    margin-bottom: 1rem;
 }
 
 .header__logo {
     width: auto;
     height: 4rem;
-    margin-right: 1.5rem;
 }
 
 .header__logoWrapper {
+    display: none;
     flex: none;
+    margin-right: 1.5rem;
 }
 
 .header__content {
     flex: 1;
+    overflow: hidden;
 }
 
 .header__title {
-    font-size: 2rem;
-    line-height: 1.25;
+    --fs-prefered: 6.2vw;
+    --fs-min: 1rem;
+    --fs-max: 2.5rem;
+    font-size: 2rem; /* Fallback value */
+    font-size: clamp(var(--fs-min), var(--fs-prefered), var(--fs-max));
+    line-height: 1;
     margin-bottom: .75rem;
+    text-align: justify;
+    text-align-last: justify;
 }
 
-.header__nav .menu {
+.header .menu-main-container {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.header .menu {
     display: flex;
     justify-content: space-between;
+    flex-wrap: nowrap;
     font-size: 1.125rem;
+}
+
+.header .menu-item + .menu-item {
+    text-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.header .menu-item + .menu-item::before {
+    content: "|";
+    display: inline;
+    margin: 0 max(.25rem, 2.4vw);
+}
+
+@media (min-width: 576px) {
+    .header__logoWrapper {
+        display: block;
+    }
+
+    .header__logo {
+        height: 6rem;
+    }
+
+    .header__title {
+        --fs-prefered: 5.1vw;
+    }
+
+    .header .menu-item + .menu-item::before {
+        margin: 0 max(.05rem, 1.4vw);
+    }
 }
 
 @media (min-width: 768px) {
@@ -99,15 +142,25 @@ html, body {
     }
 
     .header__title {
+        --fs-min: 2rem;
+        --fs-prefered: 3.2vw;
+        --fs-max: 2.1rem;
         margin-bottom: 1.5rem;
+        line-height: 1.25;
+        text-align: left;
+        text-align-last: left;
     }
 
-    .header__nav .menu {
+    .header .menu {
         display: block;
     }
 
-    .header__nav .menu-item + .menu-item {
+    .header .menu-item + .menu-item {
         margin-top: .5rem;
+    }
+
+    .header .menu-item + .menu-item::before {
+        display: none;
     }
 }
 
